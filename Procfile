@@ -1,0 +1,1 @@
+web: gunicorn ri-pet.wsgi
