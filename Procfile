@@ -1,1 +1,1 @@
-web: gunicorn ri_pet.wsgi
+web: gunicorn ri-pet.wsgi
