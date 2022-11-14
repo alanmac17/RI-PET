@@ -3,26 +3,25 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
-STATUS = ((0, "Draft"), (1, "Published"))
+STATUS = ((0, "Dog"), (1, "Cat"), (2, "Bird"), (3, "Fish"), (4, "Small Mammal/rodent"), (5, "Reptile/amphibian"), (6, "Farm Animal"))
 
 
-class Post(models.Model):
+class DeathNotice(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(
+    posted = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
-    featured_image = CloudinaryField('image', default='placeholder')
+    deceased_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    death_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='blogpost_like', blank=True)
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-death_date"]
 
     def __str__(self):
         return self.title
@@ -32,13 +31,11 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+    deathnotice = models.ForeignKey(DeathNotice, on_delete=models.CASCADE,
                              related_name="comments")
     name = models.CharField(max_length=80)
-    email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["created_on"]
