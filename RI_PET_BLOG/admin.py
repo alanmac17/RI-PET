@@ -3,7 +3,7 @@ from .models import Post, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 
-@admin.register(Post)
+@admin.register(DeathNotice)
 class PostAdmin(SummernoteModelAdmin):
 
     list_display = ('title', 'slug', 'status', 'created_on')
