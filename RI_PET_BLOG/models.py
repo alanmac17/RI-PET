@@ -11,11 +11,7 @@ class DeathNotice(models.Model):
     posted = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
-<<<<<<< HEAD
     deceased_image = CloudinaryField('image', default='placeholder')
-=======
-    pet_image = CloudinaryField('image', default='placeholder')
->>>>>>> 6ac423b4517da645a912049c345a4c01b5a8d28e
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
