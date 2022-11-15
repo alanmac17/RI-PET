@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-import dj_database_url
 
+import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['ri-pet.herokuapp.com', 'localhost']
 
 
 # Application definition
+
+SITE_ID = 1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
